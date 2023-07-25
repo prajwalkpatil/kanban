@@ -5,10 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kanban</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="src/css/style.css">
 </head>
 
 <body>
+    <nav>
+        <div class="nav-section">
+            <div class="nav-title">Kanban Board</div>
+        </div>
+    </nav>
+    <section class="board">
+        <div class="list">
+            <div class="list-title">To-Do</div>
+            <div class="list-items">
+                <div class="card">Task 1</div>
+                <div class="card">Task 2</div>
+                <div class="card">Task 3</div>
+
+            </div>
+        </div>
+        <div class="list">
+            <div class="list-title">In Progress</div>
+            <div class="list-items"></div>
+        </div>
+        <div class="list">
+            <div class="list-title">Done</div>
+            <div class="list-items"></div>
+        </div>
+    </section>
     <script src="src/js/app.js"></script>
 </body>
 
