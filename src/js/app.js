@@ -1,7 +1,7 @@
 const board = document.querySelector('.board-add');
 const boardBack = document.querySelector('.board');
 const cards = document.querySelectorAll('.card');
-const lists = document.querySelectorAll('.list');
+const lists = Array.from(document.querySelectorAll('.list'));
 const addListBackdrop = document.querySelector('.add-list-backdrop');
 const dialogCloseButtons = document.querySelectorAll('#dialog-close');
 const listAddButton = document.getElementById('list-add-button');
@@ -18,8 +18,7 @@ const colorDialogCloseButton = document.getElementById('color-dialog-close');
 const colorDialogClose = document.getElementById('dialog-close-color');
 const selectedColorDisplay = document.getElementById('selected-color');
 
-
-const priorityOptionSections = Array.from(document.querySelectorAll('.priority-options'));
+let radios = 0;
 
 let draggedCard = null;
 let draggedFromList = null;
@@ -109,13 +108,27 @@ const createNewList = (title = 'Untitled') => {
     newList.appendChild(listItems);
     listHandler(newList);
     board.appendChild(newList);
+    let addCardElement = createNewCardSection();
+    addCardHandler(addCardElement);
+    newList.appendChild(addCardElement);
 }
 
-const createNewCard = (text = 'Card') => {
+const createNewCard = (text = 'Card', priority = "default") => {
     let newCard = document.createElement('div');
     newCard.textContent = text;
     newCard.classList.add('card');
     newCard.draggable = true;
+    if (priority !== 'default') {
+        if (priority == "high") {
+            newCard.classList.add('card-p1');
+        }
+        else if (priority == 'medium') {
+            newCard.classList.add('card-p2');
+        }
+        else if (priority == 'low') {
+            newCard.classList.add('card-p3');
+        }
+    }
     cardHandler(newCard);
     return newCard;
 }
@@ -146,6 +159,17 @@ listAddButton.addEventListener("click", () => {
     toggleBackdrop(addListBackdrop);
 });
 
+listAddInput.addEventListener("focus", () => {
+    listAddInput.addEventListener("keypress", (event) => {
+        if (event.key === 'Enter') {
+            let title = listAddInput.value;
+            if (title) {
+                createNewList(title);
+            }
+            toggleBackdrop(addListBackdrop);
+        }
+    });
+})
 
 addListButton.addEventListener("click", () => {
     toggleBackdrop(addListBackdrop);
@@ -169,10 +193,43 @@ colorDialogCloseButton.addEventListener("click", () => {
     toggleBackdrop(changeColorBackdrop);
 })
 
-console.log(priorityOptionSections)
-priorityOptionSections.forEach((section) => {
-    let options = Array.from(section.getElementsByTagName('label'));
-    let divs = Array.from(section.querySelectorAll('.priority-item'));
+
+const addCardHandler = (section) => {
+    let inputs = section.querySelector('.card-name-input');
+    let sectionToggle = section.querySelector('.priority-input');
+    let cardAddName = section.querySelector('.card-name-input');
+    let cardAddBtn = section.querySelector('.card-add-button');
+    let sectionPriority = section.querySelector('.priority-input');
+    let options = Array.from(sectionPriority.getElementsByTagName('label'));
+    let divs = Array.from(sectionPriority.querySelectorAll('.priority-item'));
+
+    inputs.addEventListener("focus", () => {
+        sectionToggle.classList.remove('hidden');
+        window.addEventListener("keypress", (event) => {
+            if (event.key === 'Enter') {
+                let cardsList = section.parentElement.querySelector('.list-items');
+                let newCardName = cardAddName.value;
+                let priorityValue = section.querySelector('input[type="radio"]:checked').value;
+                if (newCardName) {
+                    cardsList.appendChild(createNewCard(newCardName, priorityValue))
+                }
+                cardAddName.value = "";
+                sectionToggle.classList.add('hidden');
+                cardAddName.blur();
+            }
+        })
+    })
+    cardAddBtn.addEventListener("click", () => {
+        let cardsList = section.parentElement.querySelector('.list-items');
+        let newCardName = cardAddName.value;
+        let priorityValue = section.querySelector('input[type="radio"]:checked').value;
+        if (newCardName) {
+            cardsList.appendChild(createNewCard(newCardName, priorityValue))
+        }
+        cardAddName.value = "";
+        sectionToggle.classList.add('hidden');
+        cardAddName.blur();
+    })
     options.forEach((option) => {
         option.addEventListener("click", () => {
             divs.forEach((div) => {
@@ -182,4 +239,115 @@ priorityOptionSections.forEach((section) => {
             selectedDiv.classList.add('priority-item-selected');
         })
     });
+}
+
+
+let createNewCardSection = () => {
+
+    let div_1 = document.createElement('DIV');
+    div_1.setAttribute('class', 'add-card');
+
+    let div_2 = document.createElement('DIV');
+    div_2.setAttribute('class', 'card-input');
+    div_1.appendChild(div_2);
+
+    let div_3 = document.createElement('INPUT');
+    div_3.setAttribute('type', 'text');
+    div_3.setAttribute('placeholder', 'New Card');
+    div_3.setAttribute('class', 'card-name-input');
+    div_3.setAttribute('maxlength', '15');
+    div_2.appendChild(div_3);
+
+    let div_4 = document.createElement('DIV');
+    div_4.setAttribute('class', 'card-add-button');
+    div_2.appendChild(div_4);
+
+    let div_5 = document.createElement('I');
+    div_5.setAttribute('class', 'fa-solid fa-plus');
+    div_4.appendChild(div_5);
+
+    let div_6 = document.createElement('DIV');
+    div_6.setAttribute('class', 'priority-input hidden');
+    div_1.appendChild(div_6);
+
+    let div_7 = document.createElement('DIV');
+    div_7.setAttribute('class', 'priority-options');
+    div_6.appendChild(div_7);
+
+    let div_8 = document.createElement('LABEL');
+    div_7.appendChild(div_8);
+
+    let div_9 = document.createElement('DIV');
+    div_9.setAttribute('class', 'priority-item priority-item-selected');
+    div_8.appendChild(div_9);
+
+    let div_10 = document.createTextNode((new String("Default")));
+    div_9.appendChild(div_10);
+
+    let checkbox_id = "priority_" + String(radios++);
+    let div_11 = document.createElement('INPUT');
+    div_11.setAttribute('type', 'radio');
+    div_11.setAttribute('name', checkbox_id);
+    div_11.setAttribute('value', 'default');
+    div_11.setAttribute('class', 'priority-radio');
+    div_11.setAttribute('checked', 'checked');
+    div_8.appendChild(div_11);
+
+    let div_12 = document.createElement('LABEL');
+    div_7.appendChild(div_12);
+
+    let div_13 = document.createElement('DIV');
+    div_13.setAttribute('class', 'priority-item');
+    div_12.appendChild(div_13);
+
+    let div_14 = document.createTextNode((new String("High")));
+    div_13.appendChild(div_14);
+
+    let div_15 = document.createElement('INPUT');
+    div_15.setAttribute('type', 'radio');
+    div_15.setAttribute('name', checkbox_id);
+    div_15.setAttribute('value', 'high');
+    div_15.setAttribute('class', 'priority-radio');
+    div_12.appendChild(div_15);
+
+    let div_16 = document.createElement('LABEL');
+    div_7.appendChild(div_16);
+
+    let div_17 = document.createElement('DIV');
+    div_17.setAttribute('class', 'priority-item');
+    div_16.appendChild(div_17);
+
+    let div_18 = document.createTextNode((new String("Medium")));
+    div_17.appendChild(div_18);
+
+    let div_19 = document.createElement('INPUT');
+    div_19.setAttribute('type', 'radio');
+    div_19.setAttribute('name', checkbox_id);
+    div_19.setAttribute('value', 'medium');
+    div_19.setAttribute('class', 'priority-radio');
+    div_16.appendChild(div_19);
+
+    let div_20 = document.createElement('LABEL');
+    div_7.appendChild(div_20);
+
+    let div_21 = document.createElement('DIV');
+    div_21.setAttribute('class', 'priority-item');
+    div_20.appendChild(div_21);
+
+    let div_22 = document.createTextNode((new String("Low")));
+    div_21.appendChild(div_22);
+
+    let div_23 = document.createElement('INPUT');
+    div_23.setAttribute('type', 'radio');
+    div_23.setAttribute('name', checkbox_id);
+    div_23.setAttribute('value', 'low');
+    div_23.setAttribute('class', 'priority-radio');
+    div_20.appendChild(div_23);
+    return div_1;
+}
+
+lists.forEach((l) => {
+    let addCardElement = createNewCardSection();
+    addCardHandler(addCardElement);
+    l.appendChild(addCardElement);
 });

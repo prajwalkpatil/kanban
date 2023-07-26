@@ -54,7 +54,7 @@ nav{
     min-height: 7em;
     border-radius: 12px;
     padding: 1em;
-    padding-bottom: 0em;
+    padding-bottom: 0.3em;
     background-color: white;
 }
 
@@ -107,7 +107,7 @@ nav{
 }
 
 .hidden{
-    display: none;
+    display: none !important;
 }
 
 .dialog-box{
