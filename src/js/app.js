@@ -1,10 +1,24 @@
-const board = document.querySelector('.board');
+const board = document.querySelector('.board-add');
 const cards = document.querySelectorAll('.card');
 const lists = document.querySelectorAll('.list');
+const backdrop = document.querySelector('.backdrop');
+const dialogCloseButtons = document.querySelectorAll('#dialog-close');
+const listAddButton = document.getElementById('list-add-button');
+const listAddInput = document.getElementById('list-title-input');
+const addListButton = document.getElementById('add-list');
 let draggedCard = null;
 let draggedFromList = null;
 let draggedToList = null;
 let greyedList = null;
+
+const resetInputs = () => {
+    listAddInput.value = '';
+}
+
+const toggleBackdrop = () => {
+    backdrop.classList.toggle('hidden');
+    resetInputs();
+}
 
 const cardHandler = (card) => {
     card.addEventListener("dragenter", () => {
@@ -68,4 +82,23 @@ document.addEventListener("dragend", () => {
     draggedFromList = null;
     draggedToList = null;
     greyedList.style.backgroundColor = "#FFFFFF";
+})
+
+
+dialogCloseButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+        toggleBackdrop();
+    })
+});
+
+listAddButton.addEventListener("click", () => {
+    let title = listAddInput.value;
+    if (title) {
+        createNewList(title);
+    }
+    toggleBackdrop();
+});
+
+addListButton.addEventListener("click", () => {
+    toggleBackdrop();
 })

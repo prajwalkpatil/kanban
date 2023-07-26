@@ -4,12 +4,13 @@
 
 body{
     margin: 0;
-    padding: 0 50px;
+    padding: 0;
 }
 
 nav{
+    padding: 0 50px;
     display: flex;
-    padding: 0 30px; 
+    margin: 0 50px;
     min-height: 7dvh;
 }
 
@@ -28,13 +29,17 @@ nav{
 }
 
 .board{
+    margin: 0 50px;
     display: flex;
     padding: 30px 30px; 
     min-height: 80dvh;
     overflow: auto;
     border-radius: 12px;
-    border: 0.5px solid black;
     background-color: #E9EAEC;
+}
+
+.board-add{
+    display: flex;
 }
 
 .list{
@@ -43,7 +48,6 @@ nav{
     height: fit-content;
     min-height: 7em;
     border-radius: 12px;
-    border: 0.5px solid black;
     padding: 1em;
     padding-bottom: 0.7em;
     background-color: white;
@@ -85,4 +89,115 @@ nav{
 .card-p3{
     border-color: #4ade80;
     border-top-width: 6px;
+}
+
+.backdrop{
+    display: flex;
+    top: 0;
+    position: absolute;
+    z-index: 2;
+    height: 100dvh;
+    width: calc(100vw - (100vw - 100%));
+    background-color: #9ca3afb6;
+}
+
+.hidden{
+    display: none;
+}
+
+.dialog-box{
+    background-color: white;
+    margin: auto;
+    min-height: 10dvh;
+    min-width:30dvw;
+    border-radius: 12px;
+    margin-top: 10em;
+}
+
+.dialog-header{
+    display: flex;
+    margin: 1.5em 2em;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dialog-title{
+    font-weight: 600;
+    font-size: 1.05em;
+    letter-spacing: -0.04em;
+}
+
+.dialog-close{
+    display: flex;
+    font-size: 1.35em;
+    align-items: center;
+}
+
+.dialog-close:hover{
+    opacity: 50%;
+}
+
+.dialog-content{
+    margin: 1.5em 2em;
+
+}
+
+.dialog-btns{
+    display: flex;
+    justify-content: flex-end;
+    margin-top:1em;
+}
+
+.btn{
+    margin-top:1em;
+    margin-left:1em;
+    background-color: #6b7280;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9em;
+    letter-spacing: -0.03em;
+    padding:0.5em 0.8em;
+    border-radius: 5px;
+    text-align: center;
+    min-width: 50px;
+}
+
+.btn:hover{
+    cursor: pointer;
+    background-color: #374151;
+}
+
+.dialog-item-title{
+    font-size: 0.9em;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.3em;
+}
+
+.dialog-item-content input{
+    width: 350px;
+    font-size: 1em;
+    padding:0.2em 0.5em;
+}
+
+.add-list{
+    display: flex;
+    margin: 20px 10px;
+    min-width: 7em;
+    height: fit-content;
+    min-height: calc(7em - 2*2px);
+    border-radius: 12px;
+    padding: 1em;
+    padding-bottom: 0.7em;
+    background-color: white;
+    opacity: 40%;
+    border:2px dashed #374151;
+}
+
+.add-list:hover{
+    opacity: 80%;
+}
+
+.add-icon{
+    margin: auto;
+    font-size: 2em;
 }
