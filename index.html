@@ -16,6 +16,9 @@
         <div class="nav-section">
             <div class="nav-title">Kanban Board</div>
         </div>
+        <div class="nav-section">
+            <div class="nav-button" id="change-color-button"><i class="fa-solid fa-paint-roller"></i></div>
+        </div>
     </nav>
     <section class="board">
         <section class="board-add">
@@ -45,7 +48,7 @@
             <div class="add-icon"><i class="fa-solid fa-plus"></i></div>
         </div>
     </section>
-    <section class="backdrop hidden">
+    <section class="add-list-backdrop backdrop hidden">
         <div class="dialog-box">
             <div class="dialog-header">
                 <div class="dialog-title">Add List</div>
@@ -61,6 +64,35 @@
                 <div class="dialog-btns">
                     <div class="btn" id="list-add-button">Done</div>
                     <div class="btn" id="dialog-close">Cancel</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="change-color-backdrop backdrop hidden">
+        <div class="dialog-box">
+            <div class="dialog-header">
+                <div class="dialog-title">Board Color</div>
+                <div class="dialog-close" id="color-dialog-close"><i class="fa-solid fa-xmark"></i></div>
+            </div>
+            <div class="dialog-content">
+                <div class="dialog-item">
+                    <div class="dialog-item-title">Palette</div>
+                    <div class="dialog-color-palette">
+                        <div class="dialog-color-section" id="light-colors">
+                        </div>
+                        <div class="dialog-color-section" id="regular-colors">
+                        </div>
+                    </div>
+                </div>
+                <div class="dialog-item">
+                    <div class="dialog-item-title">Selected Color</div>
+                    <div class="dialog-color-palette">
+                        <div class="selected-color" id="selected-color"></div>
+                    </div>
+                </div>
+                <div class="dialog-btns">
+                    <div class="btn" id="change-color-confirm">Done</div>
+                    <div class="btn" id="dialog-close-color">Cancel</div>
                 </div>
             </div>
         </div>

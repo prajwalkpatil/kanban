@@ -8,15 +8,20 @@ body{
 }
 
 nav{
-    padding: 0 50px;
+    padding: 0 55px 0 50px;
     display: flex;
-    margin: 0 50px;
     min-height: 7dvh;
+    justify-content: space-between;
 }
 
-/* section,div,nav{
-    border: 0.5px solid black;
-} */
+.nav-button{
+    opacity: 50%;
+    margin: auto 1em;
+}
+
+.nav-button:hover{
+    opacity: 100%;
+}
 
 .nav-section{
     display: flex;
@@ -35,7 +40,6 @@ nav{
     min-height: 80dvh;
     overflow: auto;
     border-radius: 12px;
-    background-color: #E9EAEC;
 }
 
 .board-add{
@@ -171,6 +175,7 @@ nav{
     font-size: 0.9em;
     letter-spacing: -0.03em;
     margin-bottom: 0.3em;
+    margin-top: 1.2em;
 }
 
 .dialog-item-content input{
@@ -189,8 +194,9 @@ nav{
     padding: 1em;
     padding-bottom: 0.7em;
     background-color: white;
-    opacity: 40%;
+    opacity: 30%;
     border:2px dashed #374151;
+    transition:0.3s;
 }
 
 .add-list:hover{
@@ -200,4 +206,22 @@ nav{
 .add-icon{
     margin: auto;
     font-size: 2em;
+}
+
+.dialog-color-section{
+    display: flex;
+    margin-top: 0.5em;
+}
+
+.color-item{
+    margin-right:0.7em;
+    width:20px;
+    height:20px;
+    border-radius: 20px;
+}
+
+.selected-color{
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
 }
