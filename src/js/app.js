@@ -28,13 +28,13 @@ const listHandler = (list) => {
     })
 }
 
-for (let card of cards) {
-    cardHandler(card);
-}
-
-for (let list of lists) {
+lists.forEach((list) => {
     listHandler(list);
-}
+});
+
+cards.forEach((card) => {
+    cardHandler(card);
+});
 
 const createNewList = (title = 'Untitled') => {
     let newList = document.createElement('div');
