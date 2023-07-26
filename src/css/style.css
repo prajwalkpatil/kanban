@@ -40,6 +40,7 @@ nav{
     min-height: 80dvh;
     overflow: auto;
     border-radius: 12px;
+    background-color: "#E9EAEC";
 }
 
 .board-add{
@@ -53,7 +54,7 @@ nav{
     min-height: 7em;
     border-radius: 12px;
     padding: 1em;
-    padding-bottom: 0.7em;
+    padding-bottom: 0em;
     background-color: white;
 }
 
@@ -224,4 +225,85 @@ nav{
     width: 30px;
     height: 30px;
     border-radius: 30px;
+}
+
+.add-card{
+    margin-bottom: 0.6em;
+}
+
+.card-input{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.card-input input{
+    border-style: dashed;
+    border-radius: 7px;
+    border-width: 1px;
+    font-size: 0.9em;
+    padding: 0.4em 0.7em;
+    max-width: 190px;
+    letter-spacing: -0.03em;
+}
+
+.card-input input:active{
+    border:inherit;
+}
+
+.card-add-button{
+    display: flex;
+    align-self: center;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    text-justify: center;
+    opacity: 30%;
+    font-size:1.3em;
+}
+
+.card-add-button:hover{
+    opacity: 100%;
+}
+
+.priority-input{
+    display: flex;
+    font-size: 0.8em;
+    margin-top:0.5em;
+    letter-spacing: -0.02em;
+}
+
+.priority-text{
+    margin-right:0.3em;
+}
+
+.priority-options{
+    display: flex;
+    margin-top: 0.3em;
+}
+
+.priority-item{  
+    cursor: pointer;  
+    margin-right: 0.6em;
+    padding:0.2em 0.5em;
+    background-color: #9ca3af;
+    color:white;
+    border-radius: 5px;
+}
+
+.priority-item:hover{
+    background-color: #6b7280;
+}
+
+.priority-item-selected{
+    font-weight: bold;
+    background-color: #4b5563;
+}
+
+.priority-radio{
+    visibility: hidden;
+}
+
+label{
+    height: fit-content;
 }

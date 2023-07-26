@@ -18,6 +18,9 @@ const colorDialogCloseButton = document.getElementById('color-dialog-close');
 const colorDialogClose = document.getElementById('dialog-close-color');
 const selectedColorDisplay = document.getElementById('selected-color');
 
+
+const priorityOptionSections = Array.from(document.querySelectorAll('.priority-options'));
+
 let draggedCard = null;
 let draggedFromList = null;
 let draggedToList = null;
@@ -165,3 +168,18 @@ colorDialogClose.addEventListener("click", () => {
 colorDialogCloseButton.addEventListener("click", () => {
     toggleBackdrop(changeColorBackdrop);
 })
+
+console.log(priorityOptionSections)
+priorityOptionSections.forEach((section) => {
+    let options = Array.from(section.getElementsByTagName('label'));
+    let divs = Array.from(section.querySelectorAll('.priority-item'));
+    options.forEach((option) => {
+        option.addEventListener("click", () => {
+            divs.forEach((div) => {
+                div.classList.remove('priority-item-selected');
+            });
+            let selectedDiv = option.querySelector('.priority-item');
+            selectedDiv.classList.add('priority-item-selected');
+        })
+    });
+});
