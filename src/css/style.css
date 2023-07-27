@@ -352,3 +352,17 @@ label{
 .card-content{
     margin-top: 0.15em;
 }
+
+#card-action-option-delete-accept{
+    color:#f87171;
+}
+#card-action-option-edit-accept{
+    color:#4ade80;
+}
+
+#card-action-option-delete-discard{
+    color:#4ade80;
+}
+#card-action-option-edit-discard{
+    color:#f87171;
+}

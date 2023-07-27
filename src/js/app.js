@@ -79,6 +79,9 @@ const cardActionsHandler = (card) => {
     const discardEditButton = card.querySelector('#card-action-option-edit-discard');
     const confirmDeleteButton = card.querySelector('#card-action-option-delete-accept');
     const discardDeleteButton = card.querySelector('#card-action-option-delete-discard');
+    const inputSection = card.querySelector('.edit-card-section');
+    const inputTextBox = card.querySelector('#edit-card-input');
+    const dataSection = card.querySelector('.card-content');
     optionButton.addEventListener("click", () => {
         optionsButtonSection.classList.toggle('hidden');
         operationsButtonSection.classList.toggle('hidden');
@@ -86,9 +89,16 @@ const cardActionsHandler = (card) => {
     editButton.addEventListener("click", () => {
         operationsButtonSection.classList.toggle('hidden');
         confirmEditButtonSection.classList.toggle('hidden');
+        inputTextBox.value = dataSection.textContent;
+        inputSection.classList.toggle('hidden');
+        dataSection.classList.toggle('hidden');
     })
     confirmEditButton.addEventListener("click", () => {
-        //Perform Edit op
+        console.log("Input ", inputSection);
+        console.log("Data ", dataSection);
+        dataSection.textContent = inputTextBox.value;
+        inputSection.classList.toggle('hidden');
+        dataSection.classList.toggle('hidden');
         confirmEditButtonSection.classList.toggle('hidden');
         optionsButtonSection.classList.toggle('hidden');
     })
