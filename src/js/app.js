@@ -209,7 +209,6 @@ const listHandler = (list) => {
 
 lists.forEach((list) => {
     listHandler(list);
-    listActionsHandler(list);
 });
 
 cards.forEach((card) => {
@@ -561,6 +560,24 @@ const createNewCard = (text = 'Card', priority = "default") => {
     cardHandler(div_1);
     return div_1;
 }
+
+// const createNewList = (title = 'Untitled') => {
+//     let newList = document.createElement('div');
+//     newList.classList.add('list');
+//     let listTitle = document.createElement('div');
+//     listTitle.classList.add('list-title');
+//     listTitle.textContent = title;
+//     let listItems = document.createElement('div');
+//     listItems.classList.add('list-items');
+//     newList.appendChild(listTitle);
+//     newList.appendChild(listItems);
+//     listHandler(newList);
+//     board.appendChild(newList);
+//     let addCardElement = createNewCardSection();
+//     addCardHandler(addCardElement);
+//     newList.appendChild(addCardElement);
+// }
+
 
 const createNewList = (title = 'Untitled') => {
 
