@@ -105,6 +105,8 @@ const cardActionsHandler = (card) => {
     discardEditButton.addEventListener("click", () => {
         confirmEditButtonSection.classList.toggle('hidden');
         optionsButtonSection.classList.toggle('hidden');
+        inputSection.classList.toggle('hidden');
+        dataSection.classList.toggle('hidden');
     })
     deleteButton.addEventListener("click", () => {
         operationsButtonSection.classList.toggle('hidden');
@@ -163,10 +165,15 @@ const listActionsHandler = (list) => {
     discardEditButton.addEventListener("click", () => {
         confirmEditButtonSection.classList.toggle('hidden');
         optionsButtonSection.classList.toggle('hidden');
+        inputSection.classList.toggle('hidden');
+        dataSection.classList.toggle('hidden');
     })
     deleteButton.addEventListener("click", () => {
         operationsButtonSection.classList.toggle('hidden');
         confirmDeleteButtonSection.classList.toggle('hidden');
+        list.style.borderStyle = "solid";
+        list.style.borderWidth = "2px";
+        list.style.borderColor = "#ef4444";
     })
     confirmDeleteButton.addEventListener("click", () => {
         let cardParent = list.parentElement;
@@ -175,6 +182,7 @@ const listActionsHandler = (list) => {
     discardDeleteButton.addEventListener("click", () => {
         confirmDeleteButtonSection.classList.toggle('hidden');
         optionsButtonSection.classList.toggle('hidden');
+        list.style.borderWidth = "0px";
     })
     exitButton.addEventListener("click", () => {
         optionsButtonSection.classList.toggle('hidden');
