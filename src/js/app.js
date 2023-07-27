@@ -19,7 +19,6 @@ const colorDialogClose = document.getElementById('dialog-close-color');
 const selectedColorDisplay = document.getElementById('selected-color');
 
 let radios = 0;
-
 let draggedCard = null;
 let draggedFromList = null;
 let draggedToList = null;
@@ -30,8 +29,43 @@ let boardBackground = null;
 let selectedColor = null;
 boardBack.style.backgroundColor = localStorage.getItem("kb_bc") || "#E9EAEC";
 
-// For random background
-// boardBack.style.backgroundColor = colourPalette[Math.floor(Math.random() * colourPalette.length)];
+let boardName = "Kanban Board"
+
+const readSnapshot = () => {
+    let snapshotData = localStorage.getItem("kanban_data");
+    let snapshotObject = null;
+    if (snapshotData) {
+        snapshotObject = JSON.parse(snapshotData);
+        console.log(snapshotObject);
+    }
+    return snapshotObject;
+}
+
+let boardSnapshot = readSnapshot();
+
+const initializeBoard = () => {
+    let priorities = ["default", "high", "medium", "low"];
+    let fetchedSnap = boardSnapshot || null;
+    if (!fetchedSnap) {
+        board.appendChild(createNewList("To-Do"));
+        board.appendChild(createNewList("In Progress"));
+        board.appendChild(createNewList("Done"));
+        getSnapshot();
+    }
+    else {
+        let readData = fetchedSnap['b_data'];
+        if (readData) {
+            readData.forEach((list) => {
+                let newList = createNewList(list["list"]);
+                let cardSection = newList.querySelector('.list-items');
+                list["cards"].forEach((card) => {
+                    cardSection.appendChild(createNewCard(card[0], priorities[card[1]]));
+                })
+            })
+        }
+    }
+}
+
 
 const createPalette = () => {
     colorPaletteLight.forEach((colorItem) => {
@@ -716,19 +750,19 @@ const getSnapshot = () => {
             listCards.forEach((card) => {
                 try {
                     let cardContent = card.querySelector('.card-content');
-                    let cardData = {}
-                    cardData["data"] = cardContent.textContent;
+                    let cardData = [null, null];
+                    cardData[0] = cardContent.textContent;
                     if (card.classList.contains('card-p1')) {
-                        cardData["priority"] = 1;
+                        cardData[1] = 1;
                     }
                     else if (card.classList.contains('card-p2')) {
-                        cardData["priority"] = 2;
+                        cardData[1] = 2;
                     }
                     else if (card.classList.contains('card-p3')) {
-                        cardData["priority"] = 3;
+                        cardData[1] = 3;
                     }
                     else {
-                        cardData["priority"] = 0;
+                        cardData[1] = 0;
                     }
                     listItem["cards"].push(cardData);
                 }
@@ -740,5 +774,15 @@ const getSnapshot = () => {
             boardData.push(listItem);
         }
     })
+    boardSnapshot = boardData;
+    let storedData = {}
+    storedData["title"] = boardName;
+    storedData["b_data"] = boardData;
+    if (boardData && boardData != []) {
+        localStorage.setItem("kanban_data", JSON.stringify(storedData));
+    }
     return boardData;
 }
+
+
+initializeBoard();
