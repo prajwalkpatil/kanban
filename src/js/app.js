@@ -28,7 +28,7 @@ let colorPaletteLight = ["#94a3b8", "#9ca3af", "#a1a1aa", "#f87171", "#fb923c", 
 let colorPaletteRegular = ["#64748b", "#6b7280", "#71717a", "#ef4444", "#f97316", "#f59e0b", "#eab308", "#84cc16", "#22c55e", "#10b981", "#14b8a6", "#06b6d4", "#0ea5e9", "#3b82f6", "#6366f1", "#8b5cf6", "#a855f7", "#d946ef", "#ec4899", "#f43f5e"];
 let boardBackground = null;
 let selectedColor = null;
-boardBack.style.backgroundColor = boardBackground || "#E9EAEC";
+boardBack.style.backgroundColor = localStorage.getItem("kb_bc") || "#E9EAEC";
 
 // For random background
 // boardBack.style.backgroundColor = colourPalette[Math.floor(Math.random() * colourPalette.length)];
@@ -225,6 +225,7 @@ changeColorButton.addEventListener("click", () => {
 changeColorConfirmButton.addEventListener("click", () => {
     boardBackground = selectedColor;
     boardBack.style.backgroundColor = boardBackground;
+    localStorage.setItem("kb_bc", boardBackground);
 });
 
 colorDialogClose.addEventListener("click", () => {
@@ -297,7 +298,7 @@ let createNewCardSection = () => {
     div_3.setAttribute('type', 'text');
     div_3.setAttribute('placeholder', 'New Card');
     div_3.setAttribute('class', 'card-name-input');
-    div_3.setAttribute('maxlength', '15');
+    div_3.setAttribute('maxlength', '2  5');
     div_2.appendChild(div_3);
 
     let div_4 = document.createElement('div');
@@ -408,6 +409,7 @@ const createNewCard = (text = 'Card', priority = "default") => {
     div_5.setAttribute('type', 'text');
     div_5.setAttribute('class', 'edit-card-input');
     div_5.setAttribute('id', 'edit-card-input');
+    div_5.setAttribute('maxlength', '25');
     div_4.appendChild(div_5);
 
     var div_6 = document.createElement('DIV');
