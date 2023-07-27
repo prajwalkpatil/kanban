@@ -242,7 +242,7 @@ listAddButton.addEventListener("click", () => {
     toggleBackdrop(addListBackdrop);
 });
 
-listAddInput.addEventListener("focus", () => {
+const listAddHandlerForEnter = () => {
     listAddInput.addEventListener("keypress", (event) => {
         if (event.key === 'Enter') {
             let title = listAddInput.value;
@@ -252,7 +252,10 @@ listAddInput.addEventListener("focus", () => {
             toggleBackdrop(addListBackdrop);
         }
     });
-})
+}
+
+listAddInput.addEventListener("focus", listAddHandlerForEnter);
+listAddInput.addEventListener("blur", listAddHandlerForEnter);
 
 addListButton.addEventListener("click", () => {
     toggleBackdrop(addListBackdrop);
