@@ -73,6 +73,9 @@ nav{
 }
 
 .card{
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
     border-radius: 8px;
     border: 0.5px solid black;
     padding: 0.5em 0.7em;
@@ -82,6 +85,7 @@ nav{
     background-color: white;
     cursor: grab;
 }
+
 
 .card-p1{
     border-color: #f87171;
@@ -306,4 +310,45 @@ nav{
 
 label{
     height: fit-content;
+}
+
+.list-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-action-buttons{
+    display: flex;
+}
+
+.list-action, .card-action{
+    margin-left:0.2em;
+    padding:0.2em;
+    opacity: 30%;
+}
+
+.list-action:hover, .card-action:hover{
+    opacity: 100%;
+    cursor: pointer;
+}
+
+.action-key{
+    font-size: 0.8em;
+}
+
+.card-action{
+    margin-top: -0.4em;
+    padding-top: 0.5em;
+}
+
+.card-actions{
+    display: flex;
+}
+
+.card-actions span{
+    display: flex;
+}
+
+.card-content{
+    margin-top: 0.15em;
 }

@@ -23,16 +23,27 @@
     <section class="board">
         <section class="board-add">
             <div class="list">
-                <div class="list-title">To-Do</div>
+                <div class="list-header">
+                    <div class="list-title">To-Do </div>
+                    <div class="list-action-buttons">
+                        <div class="list-action">
+                            <i class="fa-solid fa-ellipsis"></i>
+                        </div>
+                        <!-- <div class="list-action">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <div class="list-action">
+                            <i class="fa-solid fa-xmark"></i>
+                        </div>
+                        <div class="list-action action-key">
+                            <i class="fa-solid fa-pen"></i>
+                        </div>
+                        <div class="list-action action-key">
+                            <i class="fa-solid fa-trash"></i>
+                        </div> -->
+                    </div>
+                </div>
                 <div class="list-items">
-                    <div class="card card-p1" draggable="true">Task 1</div>
-                    <div class="card card-p2" draggable="true">Task 2</div>
-                    <div class="card card-p3" draggable="true">Task 3</div>
-                    <div class="card" draggable="true">Task 4</div>
-                    <div class="card" draggable="true">Task 5</div>
-                    <div class="card" draggable="true">Task 6</div>
-                    <div class="card" draggable="true">Task 7</div>
-                    <div class="card" draggable="true">Task 8</div>
                 </div>
             </div>
             <div class="list">
@@ -102,3 +113,48 @@
 </body>
 
 </html>
+
+<!-- card code -->
+
+<!-- <div class="card" draggable="true">
+    <div class="card-content">
+        Task 6
+    </div>
+    <div class="edit-card-section hidden">
+        <input type="text" class="edit-card-input" id="edit-card-input">
+    </div>
+    <div class="card-actions">
+        <span class="card-action-option">
+            <div class="card-action" id="card-action-option-button">
+                <i class="fa-solid fa-ellipsis"></i>
+            </div>
+        </span>
+        <span class="card-action-ops hidden">
+            <div class="card-action action-key" id="card-action-option-edit">
+                <i class="fa-solid fa-pen"></i>
+            </div>
+            <div class="card-action action-key" id="card-action-option-delete">
+                <i class="fa-solid fa-trash"></i>
+            </div>
+            <div class="card-action">
+                <i class="fa-solid fa-xmark" id="card-action-option-exit"></i>
+            </div>
+        </span>
+        <span class="card-action-edit-confirm hidden">
+            <div class="card-action">
+                <i class="fa-solid fa-check" id="card-action-option-edit-accept"></i>
+            </div>
+            <div class="card-action">
+                <i class="fa-solid fa-xmark" id="card-action-option-edit-discard"></i>
+            </div>
+        </span>
+        <span class="card-action-delete-confirm hidden">
+            <div class="card-action">
+                <i class="fa-solid fa-check" id="card-action-option-delete-accept"></i>
+            </div>
+            <div class="card-action">
+                <i class="fa-solid fa-xmark" id="card-action-option-delete-discard"></i>
+            </div>
+        </span>
+    </div>
+</div> -->
