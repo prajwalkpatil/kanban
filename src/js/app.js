@@ -94,8 +94,6 @@ const cardActionsHandler = (card) => {
         dataSection.classList.toggle('hidden');
     })
     confirmEditButton.addEventListener("click", () => {
-        console.log("Input ", inputSection);
-        console.log("Data ", dataSection);
         dataSection.textContent = inputTextBox.value;
         inputSection.classList.toggle('hidden');
         dataSection.classList.toggle('hidden');
@@ -154,8 +152,6 @@ const listActionsHandler = (list) => {
         dataSection.classList.toggle('hidden');
     })
     confirmEditButton.addEventListener("click", () => {
-        console.log("Input ", inputSection);
-        console.log("Data ", dataSection);
         dataSection.textContent = inputTextBox.value;
         inputSection.classList.toggle('hidden');
         dataSection.classList.toggle('hidden');
@@ -196,10 +192,8 @@ const cardHandler = (card) => {
         if (!draggedCard) {
             draggedCard = card;
             draggedCard.style.opacity = 0.6;
-            console.log(`${card.innerHTML} is being dragged!`)
         }
     })
-    console.log("Card", card);
     cardActionsHandler(card);
 }
 
@@ -572,24 +566,6 @@ const createNewCard = (text = 'Card', priority = "default") => {
     return div_1;
 }
 
-// const createNewList = (title = 'Untitled') => {
-//     let newList = document.createElement('div');
-//     newList.classList.add('list');
-//     let listTitle = document.createElement('div');
-//     listTitle.classList.add('list-title');
-//     listTitle.textContent = title;
-//     let listItems = document.createElement('div');
-//     listItems.classList.add('list-items');
-//     newList.appendChild(listTitle);
-//     newList.appendChild(listItems);
-//     listHandler(newList);
-//     board.appendChild(newList);
-//     let addCardElement = createNewCardSection();
-//     addCardHandler(addCardElement);
-//     newList.appendChild(addCardElement);
-// }
-
-
 const createNewList = (title = 'Untitled') => {
 
     var div_1 = document.createElement('DIV');
@@ -726,3 +702,43 @@ lists.forEach((l) => {
     addCardHandler(addCardElement);
     l.appendChild(addCardElement);
 });
+
+const getSnapshot = () => {
+    let boardData = [];
+    const allLists = Array.from(document.querySelectorAll('.list'));
+    allLists.forEach((list) => {
+        let listName = list.querySelector('.list-title').textContent;
+        let listItem = {};
+        listItem["list"] = listName;
+        listItem["cards"] = [];
+        if (listName) {
+            let listCards = Array.from(list.querySelectorAll('.card'));
+            listCards.forEach((card) => {
+                try {
+                    let cardContent = card.querySelector('.card-content');
+                    let cardData = {}
+                    cardData["data"] = cardContent.textContent;
+                    if (card.classList.contains('card-p1')) {
+                        cardData["priority"] = 1;
+                    }
+                    else if (card.classList.contains('card-p2')) {
+                        cardData["priority"] = 2;
+                    }
+                    else if (card.classList.contains('card-p3')) {
+                        cardData["priority"] = 3;
+                    }
+                    else {
+                        cardData["priority"] = 0;
+                    }
+                    listItem["cards"].push(cardData);
+                }
+                catch (e) {
+                    console.error(e);
+                    return
+                }
+            })
+            boardData.push(listItem);
+        }
+    })
+    return boardData;
+}
