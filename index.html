@@ -25,33 +25,131 @@
             <div class="list">
                 <div class="list-header">
                     <div class="list-title">To-Do </div>
+                    <div class="edit-list-section hidden">
+                        <input type="text" class="edit-list-input" id="edit-list-input" maxlength="25">
+                    </div>
                     <div class="list-action-buttons">
-                        <div class="list-action">
-                            <i class="fa-solid fa-ellipsis"></i>
-                        </div>
-                        <!-- <div class="list-action">
-                            <i class="fa-solid fa-check"></i>
-                        </div>
-                        <div class="list-action">
-                            <i class="fa-solid fa-xmark"></i>
-                        </div>
-                        <div class="list-action action-key">
-                            <i class="fa-solid fa-pen"></i>
-                        </div>
-                        <div class="list-action action-key">
-                            <i class="fa-solid fa-trash"></i>
-                        </div> -->
+                        <span class="list-action-option">
+                            <div class="list-action" id="list-action-option-button">
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </span>
+                        <span class="list-action-ops hidden">
+                            <div class="list-action action-key" id="list-action-option-edit">
+                                <i class="fa-solid fa-pen"></i>
+                            </div>
+                            <div class="list-action action-key" id="list-action-option-delete">
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                            <div class="list-action">
+                                <i class="fa-solid fa-xmark" id="list-action-option-exit"></i>
+                            </div>
+                        </span>
+                        <span class="list-action-edit-confirm hidden">
+                            <div class="list-action">
+                                <i class="fa-solid fa-check" id="list-action-option-edit-accept"></i>
+                            </div>
+                            <div class="list-action">
+                                <i class="fa-solid fa-xmark" id="list-action-option-edit-discard"></i>
+                            </div>
+                        </span>
+                        <span class="list-action-delete-confirm hidden">
+                            <div class="list-action">
+                                <i class="fa-solid fa-check" id="list-action-option-delete-accept"></i>
+                            </div>
+                            <div class="list-action">
+                                <i class="fa-solid fa-xmark" id="list-action-option-delete-discard"></i>
+                            </div>
+                        </span>
                     </div>
                 </div>
                 <div class="list-items">
                 </div>
             </div>
             <div class="list">
-                <div class="list-title">In Progress</div>
+                <div class="list-header">
+                    <div class="list-title">In Progress</div>
+                    <div class="edit-list-section hidden">
+                        <input type="text" class="edit-list-input" id="edit-list-input" maxlength="25">
+                    </div>
+                    <div class="list-action-buttons">
+                        <span class="list-action-option">
+                            <div class="list-action" id="list-action-option-button">
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </span>
+                        <span class="list-action-ops hidden">
+                            <div class="list-action action-key" id="list-action-option-edit">
+                                <i class="fa-solid fa-pen"></i>
+                            </div>
+                            <div class="list-action action-key" id="list-action-option-delete">
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                            <div class="list-action">
+                                <i class="fa-solid fa-xmark" id="list-action-option-exit"></i>
+                            </div>
+                        </span>
+                        <span class="list-action-edit-confirm hidden">
+                            <div class="list-action">
+                                <i class="fa-solid fa-check" id="list-action-option-edit-accept"></i>
+                            </div>
+                            <div class="list-action">
+                                <i class="fa-solid fa-xmark" id="list-action-option-edit-discard"></i>
+                            </div>
+                        </span>
+                        <span class="list-action-delete-confirm hidden">
+                            <div class="list-action">
+                                <i class="fa-solid fa-check" id="list-action-option-delete-accept"></i>
+                            </div>
+                            <div class="list-action">
+                                <i class="fa-solid fa-xmark" id="list-action-option-delete-discard"></i>
+                            </div>
+                        </span>
+                    </div>
+                </div>
                 <div class="list-items"></div>
             </div>
             <div class="list">
-                <div class="list-title">Done</div>
+                <div class="list-header">
+                    <div class="list-title">Done</div>
+                    <div class="edit-list-section hidden">
+                        <input type="text" class="edit-list-input" id="edit-list-input" maxlength="25">
+                    </div>
+                    <div class="list-action-buttons">
+                        <span class="list-action-option">
+                            <div class="list-action" id="list-action-option-button">
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </span>
+                        <span class="list-action-ops hidden">
+                            <div class="list-action action-key" id="list-action-option-edit">
+                                <i class="fa-solid fa-pen"></i>
+                            </div>
+                            <div class="list-action action-key" id="list-action-option-delete">
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                            <div class="list-action">
+                                <i class="fa-solid fa-xmark" id="list-action-option-exit"></i>
+                            </div>
+                        </span>
+                        <span class="list-action-edit-confirm hidden">
+                            <div class="list-action">
+                                <i class="fa-solid fa-check" id="list-action-option-edit-accept"></i>
+                            </div>
+                            <div class="list-action">
+                                <i class="fa-solid fa-xmark" id="list-action-option-edit-discard"></i>
+                            </div>
+                        </span>
+                        <span class="list-action-delete-confirm hidden">
+                            <div class="list-action">
+                                <i class="fa-solid fa-check" id="list-action-option-delete-accept"></i>
+                            </div>
+                            <div class="list-action">
+                                <i class="fa-solid fa-xmark" id="list-action-option-delete-discard"></i>
+                            </div>
+                        </span>
+                    </div>
+                </div>
                 <div class="list-items"></div>
             </div>
         </section>
@@ -121,7 +219,7 @@
         Task 6
     </div>
     <div class="edit-card-section hidden">
-        <input type="text" class="edit-card-input" id="edit-card-input" maxlength = "15">
+        <input type="text" class="edit-card-input" id="edit-card-input" maxlength = "25">
     </div>
     <div class="card-actions">
         <span class="card-action-option">

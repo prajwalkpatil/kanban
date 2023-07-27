@@ -352,16 +352,25 @@ label{
     margin-top: 0.15em;
 }
 
-#card-action-option-delete-accept{
+#card-action-option-delete-accept,#list-action-option-delete-accept{
     color:#f87171;
 }
-#card-action-option-edit-accept{
+#card-action-option-edit-accept,#list-action-option-edit-accept{
     color:#4ade80;
 }
 
-#card-action-option-delete-discard{
+#card-action-option-delete-discard, #list-action-option-delete-discard{
     color:#4ade80;
 }
-#card-action-option-edit-discard{
+#card-action-option-edit-discard, #list-action-option-edit-discard{
     color:#f87171;
+}
+
+.list-action-buttons{
+    display: flex;
+}
+
+.list-action-buttons span{
+    display: flex;
+    align-items: center;
 }

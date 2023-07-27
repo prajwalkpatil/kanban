@@ -124,6 +124,64 @@ const cardActionsHandler = (card) => {
     })
 }
 
+const listActionsHandler = (list) => {
+    const optionsButtonSection = list.querySelector('.list-action-option');
+    const operationsButtonSection = list.querySelector('.list-action-ops');
+    const confirmEditButtonSection = list.querySelector('.list-action-edit-confirm');
+    const confirmDeleteButtonSection = list.querySelector('.list-action-delete-confirm');
+    const optionButton = list.querySelector('#list-action-option-button');
+    const editButton = list.querySelector('#list-action-option-edit');
+    const deleteButton = list.querySelector('#list-action-option-delete');
+    const exitButton = list.querySelector('#list-action-option-exit');
+    const confirmEditButton = list.querySelector('#list-action-option-edit-accept');
+    const discardEditButton = list.querySelector('#list-action-option-edit-discard');
+    const confirmDeleteButton = list.querySelector('#list-action-option-delete-accept');
+    const discardDeleteButton = list.querySelector('#list-action-option-delete-discard');
+    const inputSection = list.querySelector('.edit-list-section');
+    const inputTextBox = list.querySelector('#edit-list-input');
+    const dataSection = list.querySelector('.list-title');
+    optionButton.addEventListener("click", () => {
+        optionsButtonSection.classList.toggle('hidden');
+        operationsButtonSection.classList.toggle('hidden');
+    })
+    editButton.addEventListener("click", () => {
+        operationsButtonSection.classList.toggle('hidden');
+        confirmEditButtonSection.classList.toggle('hidden');
+        inputTextBox.value = dataSection.textContent;
+        inputSection.classList.toggle('hidden');
+        dataSection.classList.toggle('hidden');
+    })
+    confirmEditButton.addEventListener("click", () => {
+        console.log("Input ", inputSection);
+        console.log("Data ", dataSection);
+        dataSection.textContent = inputTextBox.value;
+        inputSection.classList.toggle('hidden');
+        dataSection.classList.toggle('hidden');
+        confirmEditButtonSection.classList.toggle('hidden');
+        optionsButtonSection.classList.toggle('hidden');
+    })
+    discardEditButton.addEventListener("click", () => {
+        confirmEditButtonSection.classList.toggle('hidden');
+        optionsButtonSection.classList.toggle('hidden');
+    })
+    deleteButton.addEventListener("click", () => {
+        operationsButtonSection.classList.toggle('hidden');
+        confirmDeleteButtonSection.classList.toggle('hidden');
+    })
+    confirmDeleteButton.addEventListener("click", () => {
+        let cardParent = list.parentElement;
+        cardParent.removeChild(list);
+    })
+    discardDeleteButton.addEventListener("click", () => {
+        confirmDeleteButtonSection.classList.toggle('hidden');
+        optionsButtonSection.classList.toggle('hidden');
+    })
+    exitButton.addEventListener("click", () => {
+        optionsButtonSection.classList.toggle('hidden');
+        operationsButtonSection.classList.toggle('hidden');
+    })
+}
+
 const cardHandler = (card) => {
     card.addEventListener("dragenter", () => {
         draggedFromList = card.parentElement;
@@ -146,33 +204,17 @@ const listHandler = (list) => {
         greyedList = list.querySelector(".list-items");
         greyedList.style.backgroundColor = "#E9EAEC";
     })
+    listActionsHandler(list);
 }
 
 lists.forEach((list) => {
     listHandler(list);
+    listActionsHandler(list);
 });
 
 cards.forEach((card) => {
     cardHandler(card);
 });
-
-const createNewList = (title = 'Untitled') => {
-    let newList = document.createElement('div');
-    newList.classList.add('list');
-    let listTitle = document.createElement('div');
-    listTitle.classList.add('list-title');
-    listTitle.textContent = title;
-    let listItems = document.createElement('div');
-    listItems.classList.add('list-items');
-    newList.appendChild(listTitle);
-    newList.appendChild(listItems);
-    listHandler(newList);
-    board.appendChild(newList);
-    let addCardElement = createNewCardSection();
-    addCardHandler(addCardElement);
-    newList.appendChild(addCardElement);
-}
-
 
 
 document.addEventListener("dragend", () => {
@@ -298,7 +340,7 @@ let createNewCardSection = () => {
     div_3.setAttribute('type', 'text');
     div_3.setAttribute('placeholder', 'New Card');
     div_3.setAttribute('class', 'card-name-input');
-    div_3.setAttribute('maxlength', '2  5');
+    div_3.setAttribute('maxlength', '25');
     div_2.appendChild(div_3);
 
     let div_4 = document.createElement('div');
@@ -517,6 +559,137 @@ const createNewCard = (text = 'Card', priority = "default") => {
         }
     }
     cardHandler(div_1);
+    return div_1;
+}
+
+const createNewList = (title = 'Untitled') => {
+
+    var div_1 = document.createElement('DIV');
+    div_1.setAttribute('class', 'list');
+
+    var div_2 = document.createElement('DIV');
+    div_2.setAttribute('class', 'list-header');
+    div_1.appendChild(div_2);
+
+    var div_3 = document.createElement('DIV');
+    div_3.setAttribute('class', 'list-title');
+    div_2.appendChild(div_3);
+
+    var div_4 = document.createTextNode((new String(title)));
+    div_3.appendChild(div_4);
+
+    var div_5 = document.createElement('DIV');
+    div_5.setAttribute('class', 'edit-list-section hidden');
+    div_2.appendChild(div_5);
+
+    var div_6 = document.createElement('INPUT');
+    div_6.setAttribute('type', 'text');
+    div_6.setAttribute('class', 'edit-list-input');
+    div_6.setAttribute('id', 'edit-list-input');
+    div_6.setAttribute('maxlength', '25');
+    div_5.appendChild(div_6);
+
+    var div_7 = document.createElement('DIV');
+    div_7.setAttribute('class', 'list-action-buttons');
+    div_2.appendChild(div_7);
+
+    var div_8 = document.createElement('SPAN');
+    div_8.setAttribute('class', 'list-action-option');
+    div_7.appendChild(div_8);
+
+    var div_9 = document.createElement('DIV');
+    div_9.setAttribute('class', 'list-action');
+    div_9.setAttribute('id', 'list-action-option-button');
+    div_8.appendChild(div_9);
+
+    var div_10 = document.createElement('I');
+    div_10.setAttribute('class', 'fa-solid fa-ellipsis');
+    div_9.appendChild(div_10);
+
+    var div_11 = document.createElement('SPAN');
+    div_11.setAttribute('class', 'list-action-ops hidden');
+    div_7.appendChild(div_11);
+
+    var div_12 = document.createElement('DIV');
+    div_12.setAttribute('class', 'list-action action-key');
+    div_12.setAttribute('id', 'list-action-option-edit');
+    div_11.appendChild(div_12);
+
+    var div_13 = document.createElement('I');
+    div_13.setAttribute('class', 'fa-solid fa-pen');
+    div_12.appendChild(div_13);
+
+    var div_14 = document.createElement('DIV');
+    div_14.setAttribute('class', 'list-action action-key');
+    div_14.setAttribute('id', 'list-action-option-delete');
+    div_11.appendChild(div_14);
+
+    var div_15 = document.createElement('I');
+    div_15.setAttribute('class', 'fa-solid fa-trash');
+    div_14.appendChild(div_15);
+
+    var div_16 = document.createElement('DIV');
+    div_16.setAttribute('class', 'list-action');
+    div_11.appendChild(div_16);
+
+    var div_17 = document.createElement('I');
+    div_17.setAttribute('class', 'fa-solid fa-xmark');
+    div_17.setAttribute('id', 'list-action-option-exit');
+    div_16.appendChild(div_17);
+
+    var div_18 = document.createElement('SPAN');
+    div_18.setAttribute('class', 'list-action-edit-confirm hidden');
+    div_7.appendChild(div_18);
+
+    var div_19 = document.createElement('DIV');
+    div_19.setAttribute('class', 'list-action');
+    div_18.appendChild(div_19);
+
+    var div_20 = document.createElement('I');
+    div_20.setAttribute('class', 'fa-solid fa-check');
+    div_20.setAttribute('id', 'list-action-option-edit-accept');
+    div_19.appendChild(div_20);
+
+    var div_21 = document.createElement('DIV');
+    div_21.setAttribute('class', 'list-action');
+    div_18.appendChild(div_21);
+
+    var div_22 = document.createElement('I');
+    div_22.setAttribute('class', 'fa-solid fa-xmark');
+    div_22.setAttribute('id', 'list-action-option-edit-discard');
+    div_21.appendChild(div_22);
+
+    var div_23 = document.createElement('SPAN');
+    div_23.setAttribute('class', 'list-action-delete-confirm hidden');
+    div_7.appendChild(div_23);
+
+    var div_24 = document.createElement('DIV');
+    div_24.setAttribute('class', 'list-action');
+    div_23.appendChild(div_24);
+
+    var div_25 = document.createElement('I');
+    div_25.setAttribute('class', 'fa-solid fa-check');
+    div_25.setAttribute('id', 'list-action-option-delete-accept');
+    div_24.appendChild(div_25);
+
+    var div_26 = document.createElement('DIV');
+    div_26.setAttribute('class', 'list-action');
+    div_23.appendChild(div_26);
+
+    var div_27 = document.createElement('I');
+    div_27.setAttribute('class', 'fa-solid fa-xmark');
+    div_27.setAttribute('id', 'list-action-option-delete-discard');
+    div_26.appendChild(div_27);
+
+    var div_28 = document.createElement('DIV');
+    div_28.setAttribute('class', 'list-items');
+    div_1.appendChild(div_28);
+
+    listHandler(div_1);
+    board.appendChild(div_1);
+    let addCardElement = createNewCardSection();
+    addCardHandler(addCardElement);
+    div_1.appendChild(addCardElement);
     return div_1;
 }
 
