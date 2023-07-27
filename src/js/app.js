@@ -133,6 +133,7 @@ const cardActionsHandler = (card) => {
         dataSection.classList.toggle('hidden');
         confirmEditButtonSection.classList.toggle('hidden');
         optionsButtonSection.classList.toggle('hidden');
+        getSnapshot();
     })
     discardEditButton.addEventListener("click", () => {
         confirmEditButtonSection.classList.toggle('hidden');
@@ -147,6 +148,7 @@ const cardActionsHandler = (card) => {
     confirmDeleteButton.addEventListener("click", () => {
         let cardParent = card.parentElement;
         cardParent.removeChild(card);
+        getSnapshot();
     })
     discardDeleteButton.addEventListener("click", () => {
         confirmDeleteButtonSection.classList.toggle('hidden');
@@ -191,6 +193,7 @@ const listActionsHandler = (list) => {
         dataSection.classList.toggle('hidden');
         confirmEditButtonSection.classList.toggle('hidden');
         optionsButtonSection.classList.toggle('hidden');
+        getSnapshot();
     })
     discardEditButton.addEventListener("click", () => {
         confirmEditButtonSection.classList.toggle('hidden');
@@ -208,6 +211,7 @@ const listActionsHandler = (list) => {
     confirmDeleteButton.addEventListener("click", () => {
         let cardParent = list.parentElement;
         cardParent.removeChild(list);
+        getSnapshot();
     })
     discardDeleteButton.addEventListener("click", () => {
         confirmDeleteButtonSection.classList.toggle('hidden');
@@ -257,6 +261,7 @@ document.addEventListener("dragend", () => {
         draggedToList.appendChild(draggedCard);
         draggedCard.style.opacity = 1;
     }
+    getSnapshot();
     draggedCard = null;
     draggedFromList = null;
     draggedToList = null;
@@ -274,6 +279,7 @@ listAddButton.addEventListener("click", () => {
     let title = listAddInput.value;
     if (title) {
         createNewList(title);
+        getSnapshot();
     }
     toggleBackdrop(addListBackdrop);
 });
@@ -284,6 +290,7 @@ const listAddHandlerForEnter = () => {
             let title = listAddInput.value;
             if (title) {
                 createNewList(title);
+                getSnapshot();
             }
             toggleBackdrop(addListBackdrop);
         }
@@ -335,6 +342,7 @@ const addCardHandler = (section) => {
                 let priorityValue = section.querySelector('input[type="radio"]:checked').value;
                 if (newCardName) {
                     cardsList.appendChild(createNewCard(newCardName, priorityValue))
+                    getSnapshot();
                 }
                 cardAddName.value = "";
                 sectionToggle.classList.add('hidden');
@@ -348,6 +356,7 @@ const addCardHandler = (section) => {
         let priorityValue = section.querySelector('input[type="radio"]:checked').value;
         if (newCardName) {
             cardsList.appendChild(createNewCard(newCardName, priorityValue))
+            getSnapshot()
         }
         cardAddName.value = "";
         sectionToggle.classList.add('hidden');
