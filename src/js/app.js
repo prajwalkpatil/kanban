@@ -9,6 +9,12 @@ const listAddInput = document.getElementById('list-title-input');
 const addListButton = document.getElementById('add-list');
 const lightColors = document.getElementById('light-colors');
 const regularColors = document.getElementById('regular-colors');
+const navTitle = document.querySelector('.nav-title');
+
+const changeTitleBackdrop = document.querySelector('.change-title-backdrop');
+const changeTitleInput = document.querySelector('#change-title-input');
+const changeTitleButton = document.querySelector('#change-title-button');
+const changeTitleCloseButtons = Array.from(document.querySelectorAll('.ct-dialog-close'));
 
 const changeColorButton = document.getElementById('change-color-button');
 const changeColorConfirmButton = document.getElementById('change-color-confirm');
@@ -31,6 +37,35 @@ boardBack.style.backgroundColor = localStorage.getItem("kb_bc") || "#E9EAEC";
 
 let boardName = "Kanban Board"
 
+navTitle.addEventListener("dblclick", () => {
+    changeTitleBackdrop.classList.toggle("hidden");
+    changeTitleInput.value = boardName;
+});
+
+changeTitleCloseButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+        changeTitleBackdrop.classList.toggle('hidden');
+    })
+});
+
+const changeTitleHandler = () => {
+    boardName = changeTitleInput.value;
+    if (boardName) {
+        document.title = boardName;
+        navTitle.textContent = boardName;
+        localStorage.setItem("kb_title", boardName);
+    }
+    changeTitleBackdrop.classList.toggle('hidden');
+}
+
+changeTitleButton.addEventListener("click", changeTitleHandler);
+
+changeTitleInput.addEventListener("keypress", (event) => {
+    if (event.key === 'Enter') {
+        changeTitleHandler();
+    }
+});
+
 const readSnapshot = () => {
     let snapshotData = localStorage.getItem("kanban_data");
     let snapshotObject = null;
@@ -44,6 +79,17 @@ const readSnapshot = () => {
 let boardSnapshot = readSnapshot();
 
 const initializeBoard = () => {
+    let boardTitle = localStorage.getItem("kb_title");
+    if (boardTitle) {
+        document.title = boardTitle;
+        navTitle.textContent = boardTitle;
+        boardName = boardTitle;
+    }
+    else {
+        document.title = 'Kanban Board';
+        navTitle.textContent = 'Kanban Board';
+        boardName = 'Kanban Board';
+    }
     let priorities = ["default", "high", "medium", "low"];
     let fetchedSnap = boardSnapshot || null;
     if (!fetchedSnap) {

@@ -29,8 +29,12 @@ nav{
 }
 
 .nav-title{
+    cursor: pointer;
     font-weight: 600;
     letter-spacing: -0.05em;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none; 
 }
 
 .board{
