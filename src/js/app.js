@@ -72,7 +72,6 @@ const readSnapshot = () => {
     let snapshotObject = null;
     if (snapshotData) {
         snapshotObject = JSON.parse(snapshotData);
-        console.log(snapshotObject);
     }
     return snapshotObject;
 }
