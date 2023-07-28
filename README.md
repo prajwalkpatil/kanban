@@ -1,1 +1,1 @@
-![Kanban_Banner](https://github.com/prajwalkpatil/kanban/assets/32927982/1fc377d2-3504-404e-9dab-5df62788b416)
+![Kanban_Banner](https://github.com/prajwalkpatil/kanban/assets/32927982/c36ee337-1016-4e1a-92f3-458f684d3f2b)
