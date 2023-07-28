@@ -196,8 +196,8 @@ nav{
     display: flex;
     margin: 20px 10px;
     min-width: 7em;
-    height: fit-content;
     min-height: calc(7em - 2*2px);
+    height: 8.2em;
     border-radius: 12px;
     padding: 1em;
     padding-bottom: 0.7em;

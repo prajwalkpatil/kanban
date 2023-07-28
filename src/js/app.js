@@ -34,8 +34,9 @@ let colorPaletteRegular = ["#64748b", "#6b7280", "#71717a", "#ef4444", "#f97316"
 let boardBackground = null;
 let selectedColor = null;
 boardBack.style.backgroundColor = localStorage.getItem("kb_bc") || "#E9EAEC";
+let boardSnapshot = null;
 
-let boardName = "Kanban Board"
+let boardName = "Kanban Board";
 
 navTitle.addEventListener("dblclick", () => {
     changeTitleBackdrop.classList.toggle("hidden");
@@ -76,7 +77,6 @@ const readSnapshot = () => {
     return snapshotObject;
 }
 
-let boardSnapshot = readSnapshot();
 
 const initializeBoard = () => {
     let boardTitle = localStorage.getItem("kb_title");
@@ -840,4 +840,5 @@ const getSnapshot = () => {
 }
 
 
+boardSnapshot = readSnapshot();
 initializeBoard();
