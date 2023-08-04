@@ -15,6 +15,7 @@ const changeTitleBackdrop = document.querySelector('.change-title-backdrop');
 const changeTitleInput = document.querySelector('#change-title-input');
 const changeTitleButton = document.querySelector('#change-title-button');
 const changeTitleCloseButtons = Array.from(document.querySelectorAll('.ct-dialog-close'));
+const changeColorResetButton = document.querySelector("#change-color-reset");
 
 const changeColorButton = document.getElementById('change-color-button');
 const changeColorConfirmButton = document.getElementById('change-color-confirm');
@@ -355,9 +356,19 @@ changeColorButton.addEventListener("click", () => {
 });
 
 changeColorConfirmButton.addEventListener("click", () => {
-    boardBackground = selectedColor;
+    if (selectedColor) {
+        boardBackground = selectedColor;
+        boardBack.style.backgroundColor = boardBackground;
+        localStorage.setItem("kb_bc", boardBackground);
+    }
+    toggleBackdrop(changeColorBackdrop);
+});
+
+changeColorResetButton.addEventListener("click", () => {
+    boardBackground = "#E9EAEC";
     boardBack.style.backgroundColor = boardBackground;
     localStorage.setItem("kb_bc", boardBackground);
+    toggleBackdrop(changeColorBackdrop);
 });
 
 colorDialogClose.addEventListener("click", () => {
