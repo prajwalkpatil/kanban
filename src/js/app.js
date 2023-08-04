@@ -139,6 +139,7 @@ createPalette();
 
 const resetInputs = () => {
     listAddInput.value = '';
+    selectedColorDisplay.style.backgroundColor = "";
 }
 
 const toggleBackdrop = (backdrop) => {
